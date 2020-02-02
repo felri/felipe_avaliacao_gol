@@ -71,6 +71,6 @@ export default () => {
         <Title weatherInfo={weatherInfo} measurement={measurement} />
         <Map location={location} />
         <Table weatherInfo={weatherInfo} measurement={measurement} />
-        <Btn onPress={handleChangeMeasurement} />
+        <Btn onPress={handleChangeMeasurement} measurement={measurement} />
       </View>
 }

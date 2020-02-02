@@ -8,6 +8,7 @@ export default ({ location }) => {
     <View style={styles.container}>
       <MapView
         style={styles.mapStyle}
+        liteMode
         initialRegion={{
           latitude: location.coords.latitude,
           longitude: location.coords.longitude,
