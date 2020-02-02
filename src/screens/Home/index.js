@@ -11,6 +11,8 @@ import TryAgain from 'src/components/TryAgain'
 import Table from 'src/components/Table'
 import Loading from 'src/components/Loading'
 
+import { getLocation } from 'src/utils/api'
+
 import styles from './styles'
 
 export default () => {
@@ -42,9 +44,14 @@ export default () => {
       let location = await Location.getCurrentPositionAsync({})
       setDenied(false)
       setLocation(location)
+      getWeatherData()
     }
     setLoading(false)
   };
+
+  const getWeatherData = async () => {
+    getLocation({ lat: location.coords.latitude, long: location.coords.longitude })
+  }
 
   return loading ? <Loading /> :
     denied ?
