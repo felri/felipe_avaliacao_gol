@@ -2,7 +2,7 @@ import { StyleSheet, Dimensions } from 'react-native';
 
 export default StyleSheet.create({
   container: {
-    flex: 2,
+    flex: 3,
     alignItems: 'center',
     width: Dimensions.get('window').width - 40,
     justifyContent: 'center',
@@ -12,10 +12,15 @@ export default StyleSheet.create({
     borderRadius: 5,
     paddingRight: 10
   },
+  image: {
+    width: 30,
+    height: 30,
+    marginTop: -5
+  },
   containerItem: {
+    overflow: 'hidden',
     flexDirection: 'row',
     borderBottomColor: 'grey',
-    borderBottomWidth: 1,
     marginTop: 10,
     flex: 1,
     width: '100%',
@@ -29,6 +34,5 @@ export default StyleSheet.create({
   temp: {
     fontSize: 18,
     color: 'grey'
-
   }
 });

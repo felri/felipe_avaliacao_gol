@@ -16,7 +16,7 @@ const Item = ({ item, measurement, last }) => {
         {handleMeasurement({ measurement: measurement, number: item.the_temp }) + '°'}
       </Text>
       <Image
-        style={{ width: 30, height: 30 }}
+        style={styles.image}
         source={{ uri: URL_ICON }}
       />
     </View>
