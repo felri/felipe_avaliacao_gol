@@ -11,15 +11,17 @@ import TryAgain from 'src/components/TryAgain'
 import Table from 'src/components/Table'
 import Loading from 'src/components/Loading'
 
-import { getLocation } from 'src/utils/api'
+import { getLocation, getWeatherInfo } from 'src/utils/api'
 
 import styles from './styles'
 
 export default () => {
+  const [weatherInfo, setWeatherInfo] = React.useState({})
   const [location, setLocation] = React.useState({})
   const [error, setError] = React.useState('')
   const [denied, setDenied] = React.useState(false)
   const [loading, setLoading] = React.useState(true)
+  const [measurement, setMeasurement] = React.useState('C')
 
   React.useEffect(() => {
     if (Platform.OS === 'android' && !Constants.isDevice) {
@@ -44,13 +46,21 @@ export default () => {
       let location = await Location.getCurrentPositionAsync({})
       setDenied(false)
       setLocation(location)
-      getWeatherData()
+      getWeatherData(location)
     }
-    setLoading(false)
   };
 
-  const getWeatherData = async () => {
-    getLocation({ lat: location.coords.latitude, long: location.coords.longitude })
+  const getWeatherData = async (location) => {
+    const city = await getLocation({ lat: location.coords.latitude, long: location.coords.longitude })
+    if (city.length > 0 && city[0].woeid) {
+      const weatherInfo = await getWeatherInfo({ id: city[0].woeid })
+      setWeatherInfo(weatherInfo)
+      setLoading(false)
+    }
+  }
+
+  const handleChangeMeasurement = (measurement) => {
+    setMeasurement(measurement)
   }
 
   return loading ? <Loading /> :
@@ -58,9 +68,9 @@ export default () => {
       <TryAgain onPress={askForLocation} error={error} />
       :
       <View style={styles.container}>
-        <Title />
+        <Title weatherInfo={weatherInfo} measurement={measurement} />
         <Map location={location} />
-        <Table />
-        <Btn />
+        <Table weatherInfo={weatherInfo} measurement={measurement} />
+        <Btn onPress={handleChangeMeasurement} />
       </View>
 }
