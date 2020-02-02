@@ -41,6 +41,7 @@ export default () => {
     let { status } = await Permissions.askAsync(Permissions.LOCATION);
     if (status !== 'granted') {
       setDenied(true)
+      setLoading(false)
       setError('Permissão para acessar localização foi negada')
     } else {
       let location = await Location.getCurrentPositionAsync({})

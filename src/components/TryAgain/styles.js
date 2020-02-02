@@ -7,4 +7,11 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  btn: {
+    backgroundColor: '#0000ff',
+    padding: 10,
+  },
+  text: {
+    color: 'white'
+  }
 });
