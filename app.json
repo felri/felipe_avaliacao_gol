@@ -4,7 +4,11 @@
     "slug": "felipe_avaliacao_gol",
     "privacy": "public",
     "sdkVersion": "36.0.0",
-    "platforms": ["ios", "android", "web"],
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "androidStatusBar": {
       "barStyle": "dark-content",
       "backgroundColor": "#ffffff"
@@ -20,9 +24,13 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "description": "",
+    "githubUrl": "https://github.com/felri/felipe_avaliacao_gol"
   }
 }
