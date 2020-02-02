@@ -41,3 +41,5 @@ For some reason the metaweather api does not find all cities in Brazil, in Goias
 I've used Expo to make sure that this app will run on iOS, I don't have a mac or iphone at home so I can't test it on iOS.
 
 I've used a non safe and non optimal env system, normally I would have used something like react-native-config but Expo does not allow linking libs. But I think it's fine for a test.
+
+I undertand that normally in tests like this it's better to use redux to show that I know how to use it, but I really like to use redux only when necessary, if you like to see some projects using redux you can check green-thumb on my repos.
