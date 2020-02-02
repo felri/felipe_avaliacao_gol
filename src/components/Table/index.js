@@ -1,11 +1,33 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, Image } from 'react-native';
+import moment from 'moment'
+import { handleMeasurement } from 'src/utils/utils'
+import { BASE_URL, ICON } from 'src/utils/env'
 import styles from './styles'
 
-export default () => {
+const Item = ({ item, measurement, last }) => {
+  const URL_ICON = `${BASE_URL}${ICON}${item.weather_state_abbr}.png`
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+    <View style={[styles.containerItem, { borderBottomWidth: last ? 0 : 1 }]}>
+      <Text style={styles.day}>
+        {moment(item.applicable_date).format('DD/MM')}
+      </Text>
+      <Text style={styles.temp}>
+        {handleMeasurement({ measurement: measurement, number: item.the_temp }) + '°'}
+      </Text>
+      <Image
+        style={{ width: 30, height: 30 }}
+        source={{ uri: URL_ICON }}
+      />
     </View>
   )
 }
+
+export default ({ weatherInfo, measurement }) => (
+  <View style={styles.container}>
+    {
+      weatherInfo.arrayWeather.length > 0 &&
+      weatherInfo.arrayWeather.map((item, index) => <Item key={index} item={item} measurement={measurement} last={index === weatherInfo.arrayWeather.length - 1} />)
+    }
+  </View>
+)
