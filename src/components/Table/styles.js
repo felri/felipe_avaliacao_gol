@@ -18,7 +18,6 @@ export default StyleSheet.create({
     marginTop: -5
   },
   containerItem: {
-    overflow: 'hidden',
     flexDirection: 'row',
     borderBottomColor: 'grey',
     marginTop: 10,
