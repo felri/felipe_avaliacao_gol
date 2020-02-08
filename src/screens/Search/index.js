@@ -9,6 +9,7 @@ import * as Permissions from 'expo-permissions';
 import Constants from 'expo-constants';
 
 import styles from './styles'
+import UseLocationBtn from 'src/components/UseLocationBtn';
 
 export default ({ navigation }) => {
   const [androidSimulator, setAndroidSimulator] = React.useState(false)
@@ -20,7 +21,7 @@ export default ({ navigation }) => {
 
   React.useEffect(() => {
     if (Platform.OS === 'android' && !Constants.isDevice) {
-      androidSimulator(true)
+      setAndroidSimulator(true)
     }
     if (favorite)
       onResultClick({ woeid: favorite })
@@ -60,12 +61,7 @@ export default ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      {
-        !androidSimulator &&
-        <TouchableOpacity onPress={askForLocation} style={styles.btn}>
-          <Text style={styles.text}>Usar localização</Text>
-        </TouchableOpacity>
-      }
+      <UseLocationBtn askForLocation={askForLocation} androidSimulator={androidSimulator} />
       <InputSearch value={search} onChange={handleSearchChange} />
       <Results results={results} onPress={onResultClick} />
     </View>
