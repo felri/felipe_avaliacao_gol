@@ -10,12 +10,13 @@ import Title from 'src/components/Title'
 import TryAgain from 'src/components/TryAgain'
 import Table from 'src/components/Table'
 import Loading from 'src/components/Loading'
+import SearchBtn from 'src/components/SearchBtn'
 
 import { getLocation, getWeatherInfo } from 'src/utils/api'
 
 import styles from './styles'
 
-export default () => {
+export default ({ navigation }) => {
   const [weatherInfo, setWeatherInfo] = React.useState({})
   const [location, setLocation] = React.useState({})
   const [error, setError] = React.useState('')
@@ -51,6 +52,10 @@ export default () => {
     }
   };
 
+  const goToSearch = () => {
+    navigation.navigate('Search')
+  }
+
   const getWeatherData = async (location) => {
     const city = await getLocation({ lat: location.coords.latitude, long: location.coords.longitude })
     if (city.length > 0 && city[0].woeid) {
@@ -70,6 +75,7 @@ export default () => {
       :
       <View style={styles.container}>
         <Title weatherInfo={weatherInfo} measurement={measurement} />
+        <SearchBtn askForLocation={askForLocation} goToSearch={goToSearch} />
         <Map location={location} />
         <Table weatherInfo={weatherInfo} measurement={measurement} />
         <Btn onPress={handleChangeMeasurement} measurement={measurement} />
