@@ -7,12 +7,13 @@ import * as Permissions from 'expo-permissions';
 import Btn from 'src/components/Btn'
 import Map from 'src/components/Map'
 import Title from 'src/components/Title'
+import FavoriteBtn from 'src/components/FavoriteBtn'
 import TryAgain from 'src/components/TryAgain'
 import Table from 'src/components/Table'
 import Loading from 'src/components/Loading'
 import SearchBtn from 'src/components/SearchBtn'
 import { useDispatch, useSelector } from 'react-redux'
-
+import actions from 'src/redux/actions/types'
 import styles from './styles'
 
 export default ({ navigation }) => {
@@ -29,12 +30,17 @@ export default ({ navigation }) => {
   }, [weatherData])
 
   const goToSearch = () => {
-    setLoading(true)
     navigation.pop()
   }
 
   const handleChangeMeasurement = (measurement) => {
     setMeasurement(measurement)
+  }
+
+  const toogleFavorite = () => {
+    console.log(weatherData.woeid)
+    console.log(favorite)
+    favorite !== weatherData.woeid ? dispatch({ type: actions.SET_FAVORITE, payload: weatherData.woeid }) : dispatch({ type: actions.CLEAN_FAVORITE })
   }
 
   // const askForLocation = async () => {
@@ -68,6 +74,7 @@ export default ({ navigation }) => {
 
   return loading ? <Loading /> :
     <View style={styles.container}>
+      <FavoriteBtn toogleFavorite={toogleFavorite} favorite={favorite === weatherData.woeid} />
       <Title weatherInfo={weatherData} measurement={measurement} />
       {/* <SearchBtn askForLocation={askForLocation} goToSearch={goToSearch} /> */}
       <SearchBtn goToSearch={goToSearch} />

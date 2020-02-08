@@ -18,7 +18,7 @@ function* watchInput() {
 function* fetchDataWeather(action) {
   yield put({ type: actions.CLEAN_DATA })
   try {
-    const data = yield call(api.getWeatherInfo, action.payload.woeid)
+    const data = yield call(api.getWeatherInfo, action.payload)
     yield put({ type: actions.FETCH_DATA_WEATHER_SUCCEEDED, payload: data })
   } catch (error) {
     yield put({ type: actions.FETCH_DATA_WEATHER_FAILED })
@@ -32,6 +32,6 @@ function* watchCity() {
 export default function* rootSaga() {
   yield all([
     watchInput(),
-    watchCity()
+    watchCity(),
   ])
 }

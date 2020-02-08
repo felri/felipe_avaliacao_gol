@@ -15,7 +15,7 @@ export default ({ navigation }) => {
   const results = useSelector(state => state.citiesSearch.data);
 
   const onResultClick = item => {
-    dispatch({ type: actions.FETCH_DATA_WEATHER, payload: item })
+    dispatch({ type: actions.FETCH_DATA_WEATHER, payload: item.woeid })
     dispatch({ type: actions.CLEAN_CITIES })
     setSearch('')
     navigation.navigate('Home')
