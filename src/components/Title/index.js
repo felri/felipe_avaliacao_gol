@@ -9,7 +9,7 @@ export default ({ weatherInfo, measurement }) => (
     <Text style={styles.subtitle}>
       {
         !!weatherInfo.arrayWeather[0] &&
-        handleMeasurement({ measurement: measurement, number: weatherInfo.arrayWeather[0].the_temp }) + '°'
+        handleMeasurement({ measurement: measurement, number: weatherInfo.arrayWeather[0].the_temp }) + '° ' + measurement
       }
     </Text>
   </View>

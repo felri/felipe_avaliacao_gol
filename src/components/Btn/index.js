@@ -8,7 +8,7 @@ import styles from './styles'
 export default ({ measurement, onPress }) => {
   return (
     <View style={styles.container}>
-      <Text>Celsius / Fahrenheit</Text>
+      <Text style={styles.text}>Celsius / Fahrenheit</Text>
       <ToggleSwitch
         isOn={measurement === 'F'}
         onColor="red"

@@ -2,16 +2,13 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
+    position: 'absolute',
+    top: 10,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  btn: {
-    backgroundColor: '#0000ff',
-    padding: 10,
+  img: {
+    height: 25,
+    width: 25,
   },
-  text: {
-    color: 'white'
-  }
 });

@@ -2,16 +2,17 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   container: {
-    flex: 2,
+    backgroundColor: 'white',
+    width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
+    position: 'absolute',
+    bottom: 0,
+    padding: 20,
+    borderTopWidth: 1
   },
-  title: {
-    fontWeight: '800',
-    fontSize: 30
+  img: {
+    height: 30,
+    width: 30,
   },
-  subtitle: {
-    fontWeight: '800',
-    fontSize: 25
-  }
 });

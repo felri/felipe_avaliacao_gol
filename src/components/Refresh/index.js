@@ -6,7 +6,7 @@ import styles from './styles'
 export default ({ refresh }) => (
   <TouchableOpacity style={styles.container} onPress={refresh}>
     <Image
-      style={styles.image}
+      style={styles.img}
       source={RefreshIcon}
     />
   </TouchableOpacity>

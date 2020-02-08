@@ -47,9 +47,9 @@ export default ({ navigation }) => {
   return loading ? <Loading /> :
     <View style={styles.container}>
       <Refresh refresh={refresh} />
+      <SearchBtn goToSearch={goToSearch} />
       <FavoriteBtn toogleFavorite={toogleFavorite} favorite={favorite === weatherData.woeid} />
       <Title weatherInfo={weatherData} measurement={measurement} />
-      <SearchBtn goToSearch={goToSearch} />
       <Map location={weatherData.location} />
       <Table weatherInfo={weatherData} measurement={measurement} />
       <Btn onPress={handleChangeMeasurement} measurement={measurement} />

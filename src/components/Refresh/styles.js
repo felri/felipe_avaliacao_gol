@@ -2,16 +2,14 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   container: {
-    flex: 2,
+    position: 'absolute',
+    top: 10,
+    right: 10,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  title: {
-    fontWeight: '800',
-    fontSize: 30
+  img: {
+    height: 25,
+    width: 25,
   },
-  subtitle: {
-    fontWeight: '800',
-    fontSize: 25
-  }
 });

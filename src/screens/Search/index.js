@@ -61,9 +61,9 @@ export default ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <UseLocationBtn askForLocation={askForLocation} androidSimulator={androidSimulator} />
       <InputSearch value={search} onChange={handleSearchChange} />
       <Results results={results} onPress={onResultClick} />
+      <UseLocationBtn askForLocation={askForLocation} androidSimulator={androidSimulator} />
     </View>
   )
 }

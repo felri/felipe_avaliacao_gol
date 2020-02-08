@@ -8,4 +8,7 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     width: Dimensions.get('window').width - 40,
   },
+  text: {
+    color: 'grey'
+  }
 });

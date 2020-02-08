@@ -1,12 +1,16 @@
 import React from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Image, View, TouchableOpacity } from 'react-native';
+import SearchIcon from 'src/assets/icon/search.png'
 import styles from './styles'
 
 export default ({ goToSearch }) => {
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={goToSearch} style={styles.btn}>
-        <Text style={styles.text}>Buscar cidade</Text>
+      <TouchableOpacity onPress={goToSearch}>
+        <Image
+          style={styles.img}
+          source={SearchIcon}
+        />
       </TouchableOpacity>
     </View>
   )

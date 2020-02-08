@@ -13,7 +13,7 @@ const Item = ({ item, measurement, last }) => {
         {moment(item.applicable_date).format('DD/MM')}
       </Text>
       <Text style={styles.temp}>
-        {handleMeasurement({ measurement: measurement, number: item.the_temp }) + '°'}
+        {handleMeasurement({ measurement: measurement, number: item.the_temp }) + '° ' + measurement}
       </Text>
       <Image
         style={styles.image}

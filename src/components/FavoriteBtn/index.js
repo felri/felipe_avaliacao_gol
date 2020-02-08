@@ -7,7 +7,7 @@ import styles from './styles'
 export default ({ favorite, toogleFavorite }) => (
   <TouchableOpacity style={styles.container} onPress={toogleFavorite}>
     <Image
-      style={styles.image}
+      style={styles.img}
       source={favorite ? FavoriteOn : FavoriteOff}
     />
   </TouchableOpacity>
