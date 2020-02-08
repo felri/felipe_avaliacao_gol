@@ -10,8 +10,8 @@ export default ({ location }) => {
         style={styles.mapStyle}
         liteMode
         initialRegion={{
-          latitude: location.coords.latitude,
-          longitude: location.coords.longitude,
+          latitude: location.lat,
+          longitude: location.long,
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}

@@ -8,11 +8,18 @@ import Results from 'src/components/Results'
 
 import styles from './styles'
 
-export default () => {
+export default ({ navigation }) => {
   const [search, setSearch] = React.useState('')
 
   const dispatch = useDispatch();
   const results = useSelector(state => state.citiesSearch.data);
+
+  const onResultClick = item => {
+    dispatch({ type: actions.FETCH_DATA_WEATHER, payload: item })
+    dispatch({ type: actions.CLEAN_CITIES })
+    setSearch('')
+    navigation.navigate('Home')
+  }
 
   const handleSearchChange = input => {
     setSearch(input)
@@ -26,7 +33,7 @@ export default () => {
   return (
     <View style={styles.container}>
       <InputSearch value={search} onChange={handleSearchChange} />
-      <Results results={results} />
+      <Results results={results} onPress={onResultClick} />
     </View>
   )
 }

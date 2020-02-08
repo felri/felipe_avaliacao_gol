@@ -7,18 +7,24 @@ export const getLocation = async ({ lat, long }) => {
   return data
 }
 
-export const getCities = async (input) => {
+export const getCities = async input => {
   const response = await fetch(`${BASE_URL}${QUERY_INPUT}${input}`, { method: 'GET' })
   const data = await response.json()
   return data
 }
 
-export const getWeatherInfo = async ({ id }) => {
+export const getWeatherInfo = async id => {
   const response = await fetch(`${BASE_URL}${LOCATION}${id}`, { method: 'GET' })
   const data = await response.json()
+  let location = data.latt_long.split(",")
   const weatherInfo = {
     city: data.title,
-    arrayWeather: data.consolidated_weather
+    arrayWeather: data.consolidated_weather,
+    woeid: data.woeid,
+    location: {
+      lat: parseFloat(location[0]),
+      long: parseFloat(location[1])
+    }
   }
   return weatherInfo
 }

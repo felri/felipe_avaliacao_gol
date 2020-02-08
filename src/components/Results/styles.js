@@ -4,7 +4,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'space-between',
     width: Dimensions.get('window').width - 40,
   },

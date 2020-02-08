@@ -1,22 +1,22 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
 
 import styles from './styles'
 
-const Item = ({ item }) => (
-  <View>
+const Item = ({ item, onPress }) => (
+  <TouchableOpacity onPress={() => onPress(item)}>
     <Text>
       {item.title}
     </Text>
-  </View>
+  </TouchableOpacity>
 )
 
-export default ({ results, onClick }) => {
+export default ({ results, onPress }) => {
   return (
     <View style={styles.container}>
       {
         results.length > 0 &&
-        results.map((item, index) => <Item item={item} key={index} />)
+        results.map((item, index) => <Item item={item} key={index} onPress={onPress} />)
       }
     </View>
   )
