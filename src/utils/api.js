@@ -1,8 +1,8 @@
 
 import { BASE_URL, LOCATION, QUERY_LOCATION, QUERY_INPUT } from 'src/utils/env'
 
-export const getLocation = async ({ lat, long }) => {
-  const response = await fetch(`${BASE_URL}${QUERY_LOCATION}${lat},${long}`, { method: 'GET' })
+export const getLocation = async (payload) => {
+  const response = await fetch(`${BASE_URL}${QUERY_LOCATION}${payload.lat},${payload.long}`, { method: 'GET' })
   const data = await response.json()
   return data
 }

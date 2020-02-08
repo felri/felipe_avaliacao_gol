@@ -4,7 +4,6 @@ export default (state = { data: undefined }, action) => {
   const newState = { ...state }
   switch (action.type) {
     case actions.SET_FAVORITE:
-      console.log(action)
       newState.data = action.payload
       return newState
     case actions.CLEAN_FAVORITE:

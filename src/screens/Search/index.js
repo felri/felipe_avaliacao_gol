@@ -1,14 +1,17 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, TouchableOpacity, Text, Platform } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux'
 import actions from 'src/redux/actions/types'
-import Loading from 'src/components/Loading'
 import InputSearch from 'src/components/InputSearch'
 import Results from 'src/components/Results'
+import * as Location from 'expo-location';
+import * as Permissions from 'expo-permissions';
+import Constants from 'expo-constants';
 
 import styles from './styles'
 
 export default ({ navigation }) => {
+  const [androidSimulator, setAndroidSimulator] = React.useState(false)
   const [search, setSearch] = React.useState('')
 
   const dispatch = useDispatch();
@@ -16,12 +19,15 @@ export default ({ navigation }) => {
   const favorite = useSelector(state => state.favorite.data);
 
   React.useEffect(() => {
+    if (Platform.OS === 'android' && !Constants.isDevice) {
+      androidSimulator(true)
+    }
     if (favorite)
-      onResultClick(favorite)
+      onResultClick({ woeid: favorite })
   }, [])
 
   const onResultClick = item => {
-    dispatch({ type: actions.FETCH_DATA_WEATHER, payload: item.woeid ? item.woeid : item })
+    dispatch({ type: actions.FETCH_DATA_WEATHER, payload: item.woeid })
     dispatch({ type: actions.CLEAN_CITIES })
     setSearch('')
     navigation.navigate('Home')
@@ -36,8 +42,30 @@ export default ({ navigation }) => {
     }
   }
 
+  const askForLocation = async () => {
+    await Location.requestPermissionsAsync()
+    getLocationAsync()
+  }
+
+  const getLocationAsync = async () => {
+    let { status } = await Permissions.askAsync(Permissions.LOCATION);
+    if (status === 'granted') {
+      let location = await Location.getCurrentPositionAsync({})
+      dispatch({ type: actions.FETCH_DATA_WEATHER_LOCATION, payload: { lat: location.coords.latitude, long: location.coords.longitude } })
+      dispatch({ type: actions.CLEAN_CITIES })
+      setSearch('')
+      navigation.navigate('Home')
+    }
+  };
+
   return (
     <View style={styles.container}>
+      {
+        !androidSimulator &&
+        <TouchableOpacity onPress={askForLocation} style={styles.btn}>
+          <Text style={styles.text}>Usar localização</Text>
+        </TouchableOpacity>
+      }
       <InputSearch value={search} onChange={handleSearchChange} />
       <Results results={results} onPress={onResultClick} />
     </View>
