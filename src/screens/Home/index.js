@@ -11,26 +11,29 @@ import TryAgain from 'src/components/TryAgain'
 import Table from 'src/components/Table'
 import Loading from 'src/components/Loading'
 import SearchBtn from 'src/components/SearchBtn'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { getLocation, getWeatherInfo } from 'src/utils/api'
 
 import styles from './styles'
 
 export default ({ navigation }) => {
-  const [weatherInfo, setWeatherInfo] = React.useState({})
   const [location, setLocation] = React.useState({})
   const [error, setError] = React.useState('')
   const [denied, setDenied] = React.useState(false)
   const [loading, setLoading] = React.useState(true)
   const [measurement, setMeasurement] = React.useState('C')
 
+  const dispatch = useDispatch();
+  const cityData = useSelector(state => state.weatherData.data);
+  const favorite = useSelector(state => state.favorite.data);
+
   React.useEffect(() => {
-    if (Platform.OS === 'android' && !Constants.isDevice) {
-      setError('Não é possível usar localização no emulador android')
-    } else {
-      getLocationAsync()
-    }
+    if (!favorite && !cityData) navigation.navigate('Search')
   }, [])
+
+  React.useEffect(() => {
+  }, [cityData])
 
   const askForLocation = async () => {
     await Location.requestPermissionsAsync()

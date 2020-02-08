@@ -9,14 +9,10 @@ import Results from 'src/components/Results'
 import styles from './styles'
 
 export default () => {
-  const [loading, setLoading] = React.useState(false)
   const [search, setSearch] = React.useState('')
 
   const dispatch = useDispatch();
-  const results = useSelector(state => {
-    return state.citiesSearch.data
-  });
-
+  const results = useSelector(state => state.citiesSearch.data);
 
   const handleSearchChange = input => {
     setSearch(input)
@@ -27,9 +23,10 @@ export default () => {
     }
   }
 
-  return loading ? <Loading /> :
+  return (
     <View style={styles.container}>
       <InputSearch value={search} onChange={handleSearchChange} />
       <Results results={results} />
     </View>
+  )
 }
