@@ -13,9 +13,15 @@ export default ({ navigation }) => {
 
   const dispatch = useDispatch();
   const results = useSelector(state => state.citiesSearch.data);
+  const favorite = useSelector(state => state.favorite.data);
+
+  React.useEffect(() => {
+    if (favorite)
+      onResultClick(favorite)
+  }, [])
 
   const onResultClick = item => {
-    dispatch({ type: actions.FETCH_DATA_WEATHER, payload: item.woeid })
+    dispatch({ type: actions.FETCH_DATA_WEATHER, payload: item.woeid ? item.woeid : item })
     dispatch({ type: actions.CLEAN_CITIES })
     setSearch('')
     navigation.navigate('Home')
