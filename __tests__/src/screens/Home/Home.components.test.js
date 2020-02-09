@@ -124,7 +124,7 @@ describe('<Title />', () => {
   });
   it('check title temp', () => {
     const tree = renderer.create(<Title weatherInfo={MOCK} measurement="F" />).toJSON();
-    expect(tree.children[1].children[0]).toBe('81°');
+    expect(tree.children[1].children[0]).toBe('81° F');
   });
 });
 
@@ -136,31 +136,31 @@ describe('<Table />', () => {
   it('check table element 1', () => {
     const tree = renderer.create(<Table weatherInfo={MOCK} measurement="F" />).toJSON();
     expect(tree.children[0].children[0].children[0]).toBe('02/02');
-    expect(tree.children[0].children[1].children[0]).toBe('81°');
+    expect(tree.children[0].children[1].children[0]).toBe('81° F');
   });
   it('check table element 2', () => {
     const tree = renderer.create(<Table weatherInfo={MOCK} measurement="F" />).toJSON();
     expect(tree.children[1].children[0].children[0]).toBe('03/02');
-    expect(tree.children[1].children[1].children[0]).toBe('82°');
+    expect(tree.children[1].children[1].children[0]).toBe('82° F');
   });
   it('check table element 3', () => {
     const tree = renderer.create(<Table weatherInfo={MOCK} measurement="F" />).toJSON();
     expect(tree.children[2].children[0].children[0]).toBe('04/02');
-    expect(tree.children[2].children[1].children[0]).toBe('81°');
+    expect(tree.children[2].children[1].children[0]).toBe('81° F');
   });
   it('check table element 4', () => {
     const tree = renderer.create(<Table weatherInfo={MOCK} measurement="F" />).toJSON();
     expect(tree.children[3].children[0].children[0]).toBe('05/02');
-    expect(tree.children[3].children[1].children[0]).toBe('75°');
+    expect(tree.children[3].children[1].children[0]).toBe('75° F');
   });
   it('check table element 5', () => {
     const tree = renderer.create(<Table weatherInfo={MOCK} measurement="F" />).toJSON();
     expect(tree.children[4].children[0].children[0]).toBe('06/02');
-    expect(tree.children[4].children[1].children[0]).toBe('72°');
+    expect(tree.children[4].children[1].children[0]).toBe('72° F');
   });
   it('check table element 6', () => {
     const tree = renderer.create(<Table weatherInfo={MOCK} measurement="F" />).toJSON();
     expect(tree.children[5].children[0].children[0]).toBe('07/02');
-    expect(tree.children[5].children[1].children[0]).toBe('68°');
+    expect(tree.children[5].children[1].children[0]).toBe('68° F');
   });
 });

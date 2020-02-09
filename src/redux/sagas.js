@@ -2,7 +2,7 @@ import { throttle, call, put, all, takeLatest } from 'redux-saga/effects'
 import actions from 'src/redux/actions/types'
 import api from 'src/utils/api'
 
-function* handleInput(action) {
+export function* handleInput(action) {
   try {
     const data = yield call(api.getCities, action.payload)
     yield put({ type: actions.FETCH_CITIES_SUCCEEDED, payload: data })
@@ -11,11 +11,11 @@ function* handleInput(action) {
   }
 }
 
-function* watchInput() {
+export function* watchInput() {
   yield throttle(1000, actions.FETCH_CITIES, handleInput)
 }
 
-function* handleLocation(action) {
+export function* handleLocation(action) {
   yield put({ type: actions.CLEAN_DATA })
   try {
     const city = yield call(api.getLocation, action.payload)
@@ -26,11 +26,11 @@ function* handleLocation(action) {
   }
 }
 
-function* watchLocation() {
+export function* watchLocation() {
   yield takeLatest(actions.FETCH_DATA_WEATHER_LOCATION, handleLocation)
 }
 
-function* fetchDataWeather(action) {
+export function* fetchDataWeather(action) {
   yield put({ type: actions.CLEAN_DATA })
   try {
     const data = yield call(api.getWeatherInfo, action.payload)
@@ -40,7 +40,7 @@ function* fetchDataWeather(action) {
   }
 }
 
-function* watchCity() {
+export function* watchCity() {
   yield takeLatest(actions.FETCH_DATA_WEATHER, fetchDataWeather)
 }
 
