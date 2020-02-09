@@ -19,6 +19,7 @@ Use your camera to read this QR Code and the app will open:
 ### Run locally 
 
 ```
+yarn global add expo-cli
 git clone https://github.com/felri/felipe_avaliacao_gol
 cd felipe_avaliacao_gol
 yarn
