@@ -14,7 +14,7 @@ Click Scan QR Code:
 
 Use your camera to read this QR Code and the app will open:
 
-![Image description](https://i.imgur.com/8MRWrTM.png)
+![Image description](https://i.imgur.com/1bw1ToS.png)
 
 ### Run locally 
 
@@ -24,12 +24,16 @@ cd felipe_avaliacao_gol
 yarn
 yarn start
 ```
-Follow the steps above and read the QR Code on your terminal
+Follow the steps above and read the QR Code on your terminal 
+
+or
+
+Click A to open the app on a android simulator, I to open on a iphone simulator
 
 ### Run unit tests
 
 ```
-yarn test
+yarn test --verbose
 ```
 
 _______
@@ -38,8 +42,8 @@ _______
 
 For some reason the metaweather api does not find all cities in Brazil, in Goias for example it only finds Brasilia, but the app works normally.
 
-I've used Expo to make sure that this app will run on iOS, I don't have a mac or iphone at home so I can't test it on iOS.
+I've used Expo to make sure that this app will run on iOS, I don't have a mac or iphone at home so I can't test it on iOS. But I'm really familiar with android studio and xcode, and I use it daily for deployments and debugging.
 
 I've used a non safe and non optimal env system, normally I would have used something like react-native-config but Expo does not allow linking libs. But I think it's fine for a test.
 
-I undertand that normally in tests like this it's better to use redux to show that I know how to use it, but I really like to use redux only when necessary, if you like to see some projects using redux you can check green-thumb on my repos.
+
