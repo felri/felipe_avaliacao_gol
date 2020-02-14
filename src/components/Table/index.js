@@ -26,7 +26,6 @@ const Item = ({ item, measurement, last }) => {
 export default ({ weatherInfo, measurement }) => (
   <View style={styles.container}>
     {
-      weatherInfo.arrayWeather.length > 0 &&
       weatherInfo.arrayWeather.map((item, index) => <Item key={index} item={item} measurement={measurement} last={index === weatherInfo.arrayWeather.length - 1} />)
     }
   </View>

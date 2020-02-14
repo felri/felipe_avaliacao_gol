@@ -1,8 +1,10 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 
+import FlipCard from 'src/utils/react-native-flip-card'
 import Btn from 'src/components/Btn'
 import Map from 'src/components/Map'
+import Chart from 'src/components/Chart'
 import Title from 'src/components/Title'
 import FavoriteBtn from 'src/components/FavoriteBtn'
 import Refresh from 'src/components/Refresh'
@@ -15,11 +17,19 @@ import styles from './styles'
 
 export default ({ navigation }) => {
   const [loading, setLoading] = React.useState(true)
-  const [measurement, setMeasurement] = React.useState('C')
+  const [flip, setFlip] = React.useState(false)
 
   const dispatch = useDispatch();
   const weatherData = useSelector(state => state.weatherData.data);
   const favorite = useSelector(state => state.favorite.data);
+  const measurement = useSelector(state => state.favorite.measurement);
+
+  React.useEffect(() => {
+    !loading && !flip &&
+      setTimeout(() => {
+        setFlip(!flip)
+      }, 5000);
+  }, [loading])
 
   React.useEffect(() => {
     weatherData.woeid && setLoading(false)
@@ -30,7 +40,7 @@ export default ({ navigation }) => {
   }
 
   const handleChangeMeasurement = (measurement) => {
-    setMeasurement(measurement)
+    dispatch({ type: actions.SET_MEASUREMENT, payload: measurement })
   }
 
   const toogleFavorite = () => {
@@ -38,6 +48,7 @@ export default ({ navigation }) => {
   }
 
   const refresh = () => {
+    setFlip(false)
     setLoading(true)
     let woeid = weatherData.woeid
     dispatch({ type: actions.CLEAN_DATA })
@@ -51,7 +62,25 @@ export default ({ navigation }) => {
       <FavoriteBtn toogleFavorite={toogleFavorite} favorite={favorite === weatherData.woeid} />
       <Title weatherInfo={weatherData} measurement={measurement} />
       <Map location={weatherData.location} />
-      <Table weatherInfo={weatherData} measurement={measurement} />
+      <View style={{ flex: 3 }}>
+        {
+          weatherData.arrayWeather.length > 0 &&
+          <TouchableOpacity onPress={() => setFlip(!flip)}>
+            <FlipCard
+              flipHorizontal
+              friction={10}
+              flipVertical={false}
+              flip={flip}
+              clickable
+              useNativeDriver
+
+            >
+              <Table weatherInfo={weatherData} measurement={measurement} />
+              <Chart weatherInfo={weatherData} measurement={measurement} />
+            </FlipCard>
+          </TouchableOpacity>
+        }
+      </View>
       <Btn onPress={handleChangeMeasurement} measurement={measurement} />
     </View>
 }
