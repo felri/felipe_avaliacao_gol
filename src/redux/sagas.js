@@ -12,7 +12,7 @@ export function* handleInput(action) {
 }
 
 export function* watchInput() {
-  yield throttle(1000, actions.FETCH_CITIES, handleInput)
+  yield throttle(600, actions.FETCH_CITIES, handleInput)
 }
 
 export function* handleLocation(action) {

@@ -13,7 +13,7 @@ const Item = ({ item, onPress }) => (
 
 export default ({ results, onPress }) => {
   return (
-    <ScrollView>
+    <ScrollView keyboardShouldPersistTaps='handled'>
       <View style={styles.container}>
         {
           results.length > 0 &&
