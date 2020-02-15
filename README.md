@@ -14,7 +14,7 @@ Click Scan QR Code:
 
 Use your camera to read this QR Code and the app will open:
 
-![Image description](https://i.imgur.com/1bw1ToS.png)
+![Image description](https://i.imgur.com/xdCraMw.png)
 
 ### Run locally 
 
