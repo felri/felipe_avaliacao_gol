@@ -1,6 +1,4 @@
 
-# Gol React Native Test
-
 ### Running the app on your phone
 Download Expo Client from:
 
@@ -20,8 +18,8 @@ Use your camera to read this QR Code and the app will open:
 
 ```
 yarn global add expo-cli
-git clone https://github.com/felri/felipe_avaliacao_gol
-cd felipe_avaliacao_gol
+git clone https://github.com/felri/simple-weather-app
+cd simple-weather-app
 yarn
 yarn start
 ```
@@ -37,14 +35,5 @@ Click A to open the app on a android simulator, I to open on a iphone simulator
 yarn test --verbose
 ```
 
-_______
-
-### Infos
-
-For some reason the metaweather api does not find all cities in Brazil, in Goias for example it only finds Brasilia, but the app works normally.
-
-I've used Expo to make sure that this app will run on iOS, I don't have a mac or iphone at home so I can't test it on iOS. But I'm really familiar with android studio and xcode, and I use it daily for deployments and debugging.
-
-I've used a non safe and non optimal env system, normally I would have used something like react-native-config but Expo does not allow linking libs. But I think it's fine for a test.
 
 
